@@ -50,11 +50,11 @@ if __name__ == '__main__':
 	auth.set_access_token(ACCESS_KEY,ACCESS_SECRET)
 	api = tweepy.API(auth)
 	
-	# try:
-	user1=UserTwitter()
-	user1.following("RahulRahul010")
-	# except Exception as e:
-	# 	print(f"ERROR || {e}")				
+	try:
+		user1=UserTwitter()
+		user1.following("RahulRahul010")
+	except Exception as e:
+		print(f"ERROR || {e}")				
 # user=api.friends(screen_name="pradip103")
 # # print(user)
 # c=0
