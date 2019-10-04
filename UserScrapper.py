@@ -5,7 +5,8 @@ import os
 import pandas as pd
 import time
 import tweepy
-
+import logging
+# from tweepy.streaming import StreamListener
 # from tweepy import OAuthHandler
 # from tweepy import StreamListener
 
@@ -35,7 +36,7 @@ class UserTwitter():
 			try:
 				yield cursor.next()
 			except tweepy.RateLimitError:
-				time.sleep(3*60)
+				time.sleep(15*60)
 	
 	def following(self, user_name):
 
@@ -73,8 +74,8 @@ if __name__ == '__main__':
 	
 	try:
 		user1=UserTwitter()
-		# user1.following("TajinderBagga")
-		user1.latest_tweets(10,"TajinderBagga")
+		user1.following("TajinderBagga")
+		# user1.latest_tweets(10,"TajinderBagga")
 	except Exception as e:
 		print(f"ERROR || {e}")
 		logger.error("EXCEPTION ERROR IN MAIN", exc_info=True)				
