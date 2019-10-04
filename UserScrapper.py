@@ -5,8 +5,7 @@ import os
 import pandas as pd
 import time
 import tweepy
-import logging
-# form tweepy.streaming import StreamListener
+
 # from tweepy import OAuthHandler
 # from tweepy import StreamListener
 
