@@ -51,30 +51,77 @@ class UserTwitter():
 		
 		df["name"] = name_ls
 		df["screen_name"] = screen_name_ls
-		df.to_excel("FollowingOutput.xlsx")
+		df.to_excel("datafile/FollowingOutput.xlsx")
 	
-	def latest_tweets(self, limit, user):
-		print(api.friends_ids(screen_name = user))
-		ls=api.friends_ids(screen_name = user)
+	def friends_id(self, screen_name):
+		
+		id_ls = api.friends_ids(screen_name = screen_name)
+		df = pd.DataFrame()
+		df["friends_id"] = id_ls
+		df.to_excel(f"datafile/{screen_name}.xlsx")
+
+
+	def latest_tweets(self, id, limit):
+		# api.get_user(id=2288047490)._json["screen_name"]
+		tweets_ls=[]
+		try:
+			userdata = api.get_user(id=id)
+			print(f"======================{userdata._json['name']} - {userdata._json['screen_name']}======================\n")
+			for i in api.user_timeline(id=id,tweet_mode='extended', count = 20):
+				print(i._json["full_text"])	
+				print("----------------------------------------------------------------------------------")
+				tweets_ls.append(i._json["full_text"])
+			return tweets_ls
+		except Exception as e:
+			print(f"ERROR | User Not Found OR No TWEETS for user id = {id}")
+			return tweets_ls		
+		# print(api.friends_ids(screen_name = user))
+		# ls=api.friends_ids(screen_name = user)
 		# print(api.user_timeline(id=ls, count = 10))
-		for i in ls:
-		# 	# print()
-			for j in api.user_timeline(id=i, count = 10):
-				print(j.text)
-				print("=====================================================================================")
-		# 	# for j in api.get_user(id=i):
-		# 	# 	print(j)
-		# 	# 	print("==================================================")
-			break	
+		# for i in ls:
+		# # 	# print()
+		# 	for j in api.user_timeline(id=i, count = 10):
+		# 		print(j.text)
+		# 		print("=====================================================================================")
+		# # 	# for j in api.get_user(id=i):
+		# # 	# 	print(j)
+		# # 	# 	print("==================================================")
+		# 	break	
+
+	def read_tweets_by_screen_name(self, screen_name):
+		
+		try:
+			df = pd.read_excel(f"datafile/{screen_name}.xlsx")
+			# print(df["friends_id"])
+			friends_id_ls = df["friends_id"].tolist()
+			# print(friends_id_ls)
+			tweets_ls=[]
+			for id in friends_id_ls:
+				tweets_ls.append(self.latest_tweets(id, 20))
+			df2 = pd.DataFrame()
+			df2["friends_id"] = friends_id_ls
+			df2["tweets"] = tweets_ls
+			df2.to_excel(f"datafile/{screen_name}_friends_tweets.xlsx")	
+		
+		except Exception as e:
+			print(f"ERROR: User Does Not Exist. ({e})")	 	
 
 if __name__ == '__main__':
+
 	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 	auth.set_access_token(ACCESS_KEY,ACCESS_SECRET)
 	api = tweepy.API(auth)
+
+	dirs = ["datafile"]
+	for dir in dirs:
+		if not os.path.exists(dir):
+			os.makedirs(dir)
 	
 	try:
 		user1=UserTwitter()
-		user1.following("TajinderBagga")
+		user1.friends_id("TajinderBagga") # Makes A list of friend id
+		# user1.read_tweets_by_screen_name("TajinderBagga") # saves the tweets of the targeted user in datafiles 
+		# user1.following("TajinderBagga")
 		# user1.latest_tweets(10,"TajinderBagga")
 	except Exception as e:
 		print(f"ERROR || {e}")
@@ -82,6 +129,7 @@ if __name__ == '__main__':
 # user=api.friends(screen_name="pradip103")
 # # print(user)
 # c=0
+# RahulRahul010
 # for i in user:
 # 	c+=1
 # 	print(f" {c} {i.name} {i.screen_name}")
