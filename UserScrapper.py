@@ -5,9 +5,19 @@ import os
 import pandas as pd
 import time
 import tweepy
+import logging
 # form tweepy.streaming import StreamListener
 # from tweepy import OAuthHandler
 # from tweepy import StreamListener
+
+# ======================================================
+LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
+logging.basicConfig(filename = "ErrorLog.txt", level = logging.DEBUG, format = LOG_FORMAT)
+logger = logging.getLogger()
+# ======================================================
+
+
+
 
 # ======================================================
 CONSUMER_KEY = os.getenv("API_KEY")
@@ -43,7 +53,19 @@ class UserTwitter():
 		df["screen_name"] = screen_name_ls
 		df.to_excel("FollowingOutput.xlsx")
 	
-
+	def latest_tweets(self, limit, user):
+		print(api.friends_ids(screen_name = user))
+		ls=api.friends_ids(screen_name = user)
+		# print(api.user_timeline(id=ls, count = 10))
+		for i in ls:
+		# 	# print()
+			for j in api.user_timeline(id=i, count = 10):
+				print(j.text)
+				print("=====================================================================================")
+		# 	# for j in api.get_user(id=i):
+		# 	# 	print(j)
+		# 	# 	print("==================================================")
+			break	
 
 if __name__ == '__main__':
 	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
@@ -52,9 +74,11 @@ if __name__ == '__main__':
 	
 	try:
 		user1=UserTwitter()
-		user1.following("RahulRahul010")
+		# user1.following("TajinderBagga")
+		user1.latest_tweets(10,"TajinderBagga")
 	except Exception as e:
-		print(f"ERROR || {e}")				
+		print(f"ERROR || {e}")
+		logger.error("EXCEPTION ERROR IN MAIN", exc_info=True)				
 # user=api.friends(screen_name="pradip103")
 # # print(user)
 # c=0
