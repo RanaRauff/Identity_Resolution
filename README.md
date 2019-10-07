@@ -1,3 +1,3 @@
 # Identity_Resolution
-This is the major project 2019
+This is the major project 2019.
 
