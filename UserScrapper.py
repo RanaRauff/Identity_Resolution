@@ -1,11 +1,12 @@
 # from twitterscraper import query_tweets
-from dotenv import load_dotenv
-load_dotenv()
+
 import os
-import pandas as pd
 import time
 import tweepy
 import logging
+import pandas as pd
+from dotenv import load_dotenv
+load_dotenv()
 # from tweepy.streaming import StreamListener
 # from tweepy import OAuthHandler
 # from tweepy import StreamListener
@@ -119,8 +120,8 @@ if __name__ == '__main__':
 	
 	try:
 		user1=UserTwitter()
-		user1.friends_id("TajinderBagga") # Makes A list of friend id
-		# user1.read_tweets_by_screen_name("TajinderBagga") # saves the tweets of the targeted user in datafiles 
+		# user1.friends_id("TajinderBagga") # Makes A list of friend id
+		user1.read_tweets_by_screen_name("TajinderBagga") # saves the tweets of the targeted user in datafiles 
 		# user1.following("TajinderBagga")
 		# user1.latest_tweets(10,"TajinderBagga")
 	except Exception as e:

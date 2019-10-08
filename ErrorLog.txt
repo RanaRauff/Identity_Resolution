@@ -3275,3 +3275,99 @@ DEBUG 2019-10-04 22:59:08,789 - Updated headers: {'Host': 'api.twitter.com', 'Au
 DEBUG 2019-10-04 22:59:08,789 - Updated body: None
 DEBUG 2019-10-04 22:59:08,792 - Starting new HTTPS connection (1): api.twitter.com
 DEBUG 2019-10-04 22:59:10,243 - https://api.twitter.com:443 "GET /1.1/statuses/user_timeline.json?id=18839785&tweet_mode=extended&count=20 HTTP/1.1" 200 108454
+DEBUG 2019-10-05 00:23:03,031 - PARAMS: {'screen_name': b'TajinderBagga'}
+DEBUG 2019-10-05 00:23:03,034 - Signing request <PreparedRequest [GET]> using client <Client client_key=qJZ0tMHGpclpYUJ2X51sT9vJ7, client_secret=****, resource_owner_key=2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0, resource_owner_secret=****, signature_method=HMAC-SHA1, signature_type=AUTH_HEADER, callback_uri=None, rsa_key=None, verifier=None, realm=None, encoding=utf-8, decoding=None, nonce=None, timestamp=None>
+DEBUG 2019-10-05 00:23:03,035 - Including body in call to sign: False
+DEBUG 2019-10-05 00:23:03,037 - Collected params: [('screen_name', 'TajinderBagga'), ('oauth_nonce', '106921678557203326461570215183'), ('oauth_timestamp', '1570215183'), ('oauth_version', '1.0'), ('oauth_signature_method', 'HMAC-SHA1'), ('oauth_consumer_key', 'qJZ0tMHGpclpYUJ2X51sT9vJ7'), ('oauth_token', '2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0')]
+DEBUG 2019-10-05 00:23:03,038 - Normalized params: oauth_consumer_key=qJZ0tMHGpclpYUJ2X51sT9vJ7&oauth_nonce=106921678557203326461570215183&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1570215183&oauth_token=2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0&oauth_version=1.0&screen_name=TajinderBagga
+DEBUG 2019-10-05 00:23:03,038 - Normalized URI: https://api.twitter.com/1.1/friends/ids.json
+DEBUG 2019-10-05 00:23:03,038 - Signing: signature base string: GET&https%3A%2F%2Fapi.twitter.com%2F1.1%2Ffriends%2Fids.json&oauth_consumer_key%3DqJZ0tMHGpclpYUJ2X51sT9vJ7%26oauth_nonce%3D106921678557203326461570215183%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1570215183%26oauth_token%3D2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0%26oauth_version%3D1.0%26screen_name%3DTajinderBagga
+DEBUG 2019-10-05 00:23:03,039 - Signature: wI5xgUA3c0artuPbW52vK8Ce+QM=
+DEBUG 2019-10-05 00:23:03,039 - Updated url: https://api.twitter.com/1.1/friends/ids.json?screen_name=TajinderBagga
+DEBUG 2019-10-05 00:23:03,040 - Updated headers: {'Host': 'api.twitter.com', 'Authorization': 'OAuth oauth_nonce="106921678557203326461570215183", oauth_timestamp="1570215183", oauth_version="1.0", oauth_signature_method="HMAC-SHA1", oauth_consumer_key="qJZ0tMHGpclpYUJ2X51sT9vJ7", oauth_token="2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0", oauth_signature="wI5xgUA3c0artuPbW52vK8Ce%2BQM%3D"'}
+DEBUG 2019-10-05 00:23:03,041 - Updated body: None
+DEBUG 2019-10-05 00:23:03,044 - Starting new HTTPS connection (1): api.twitter.com
+ERROR 2019-10-05 00:23:03,064 - EXCEPTION ERROR IN MAIN
+Traceback (most recent call last):
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\urllib3\connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "C:\Users\Chauhan\Anaconda3\lib\socket.py", line 745, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\urllib3\connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\urllib3\connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\urllib3\connectionpool.py", line 850, in _validate_conn
+    conn.connect()
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\urllib3\connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x0000020738757898>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\requests\adapters.py", line 440, in send
+    timeout=timeout
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\urllib3\connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\urllib3\util\retry.py", line 388, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.twitter.com', port=443): Max retries exceeded with url: /1.1/friends/ids.json?screen_name=TajinderBagga (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x0000020738757898>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\tweepy\binder.py", line 189, in execute
+    proxies=self.api.proxy)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\requests\sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\requests\sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\requests\adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.twitter.com', port=443): Max retries exceeded with url: /1.1/friends/ids.json?screen_name=TajinderBagga (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x0000020738757898>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Rahul\MAJOR1\Identity_Resolution\UserScrapper.py", line 123, in <module>
+    user1.friends_id("TajinderBagga") # Makes A list of friend id
+  File "D:\Rahul\MAJOR1\Identity_Resolution\UserScrapper.py", line 59, in friends_id
+    id_ls = api.friends_ids(screen_name = screen_name)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\tweepy\binder.py", line 250, in _call
+    return method.execute()
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\tweepy\binder.py", line 191, in execute
+    six.reraise(TweepError, TweepError('Failed to send request: %s' % e), sys.exc_info()[2])
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\tweepy\binder.py", line 189, in execute
+    proxies=self.api.proxy)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\requests\sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\requests\sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Chauhan\Anaconda3\lib\site-packages\requests\adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+tweepy.error.TweepError: Failed to send request: HTTPSConnectionPool(host='api.twitter.com', port=443): Max retries exceeded with url: /1.1/friends/ids.json?screen_name=TajinderBagga (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x0000020738757898>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed',))
+DEBUG 2019-10-05 00:27:39,188 - PARAMS: {'screen_name': b'TajinderBagga'}
+DEBUG 2019-10-05 00:27:39,190 - Signing request <PreparedRequest [GET]> using client <Client client_key=qJZ0tMHGpclpYUJ2X51sT9vJ7, client_secret=****, resource_owner_key=2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0, resource_owner_secret=****, signature_method=HMAC-SHA1, signature_type=AUTH_HEADER, callback_uri=None, rsa_key=None, verifier=None, realm=None, encoding=utf-8, decoding=None, nonce=None, timestamp=None>
+DEBUG 2019-10-05 00:27:39,191 - Including body in call to sign: False
+DEBUG 2019-10-05 00:27:39,194 - Collected params: [('screen_name', 'TajinderBagga'), ('oauth_nonce', '128977928336409074761570215459'), ('oauth_timestamp', '1570215459'), ('oauth_version', '1.0'), ('oauth_signature_method', 'HMAC-SHA1'), ('oauth_consumer_key', 'qJZ0tMHGpclpYUJ2X51sT9vJ7'), ('oauth_token', '2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0')]
+DEBUG 2019-10-05 00:27:39,195 - Normalized params: oauth_consumer_key=qJZ0tMHGpclpYUJ2X51sT9vJ7&oauth_nonce=128977928336409074761570215459&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1570215459&oauth_token=2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0&oauth_version=1.0&screen_name=TajinderBagga
+DEBUG 2019-10-05 00:27:39,195 - Normalized URI: https://api.twitter.com/1.1/friends/ids.json
+DEBUG 2019-10-05 00:27:39,196 - Signing: signature base string: GET&https%3A%2F%2Fapi.twitter.com%2F1.1%2Ffriends%2Fids.json&oauth_consumer_key%3DqJZ0tMHGpclpYUJ2X51sT9vJ7%26oauth_nonce%3D128977928336409074761570215459%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1570215459%26oauth_token%3D2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0%26oauth_version%3D1.0%26screen_name%3DTajinderBagga
+DEBUG 2019-10-05 00:27:39,197 - Signature: aIphgut2mBvqmTXOrcsgn+memSE=
+DEBUG 2019-10-05 00:27:39,197 - Updated url: https://api.twitter.com/1.1/friends/ids.json?screen_name=TajinderBagga
+DEBUG 2019-10-05 00:27:39,198 - Updated headers: {'Host': 'api.twitter.com', 'Authorization': 'OAuth oauth_nonce="128977928336409074761570215459", oauth_timestamp="1570215459", oauth_version="1.0", oauth_signature_method="HMAC-SHA1", oauth_consumer_key="qJZ0tMHGpclpYUJ2X51sT9vJ7", oauth_token="2190017268-vIl4MrBciTOl8q4mh3hzbOmwLpqumMGAYJ0crW0", oauth_signature="aIphgut2mBvqmTXOrcsgn%2BmemSE%3D"'}
+DEBUG 2019-10-05 00:27:39,199 - Updated body: None
+DEBUG 2019-10-05 00:27:39,205 - Starting new HTTPS connection (1): api.twitter.com
+DEBUG 2019-10-05 00:27:54,921 - https://api.twitter.com:443 "GET /1.1/friends/ids.json?screen_name=TajinderBagga HTTP/1.1" 200 59205
