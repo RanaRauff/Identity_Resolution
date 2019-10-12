@@ -97,11 +97,20 @@ class UserTwitter():
 			friends_id_ls = df["friends_id"].tolist()
 			# print(friends_id_ls)
 			tweets_ls=[]
+			ls_bio=[]
 			for id in friends_id_ls:
 				tweets_ls.append(self.latest_tweets(id, 20))
+				try:
+					x = api.get_user(id=i)
+					# print("user_id: ",i,x.screen_name)
+					ls_bio.append(x.description)
+				except Exception as e:
+					print("DEfect User:",i)
+					ls_bio.append("")
 			df2 = pd.DataFrame()
 			df2["friends_id"] = friends_id_ls
 			df2["tweets"] = tweets_ls
+			df2["bio"] = ls_bio
 			df2.to_excel(f"datafile/{screen_name}_friends_tweets.xlsx")	
 		
 		except Exception as e:
