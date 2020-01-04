@@ -19,7 +19,7 @@ for i in bio:
 	except Exception as e:
 		clean_bio.append("NO_BIO")
 for i in tweets:
-	clean_tweets.append([re.sub(r'http\S+RT', '', j).strip() for j in i])
+	clean_tweets.append([re.sub(r'http\S+', '', j).strip() for j in i])
 
 print(clean_tweets[3])	
 tweets = clean_tweets

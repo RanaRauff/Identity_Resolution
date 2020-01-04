@@ -5,6 +5,7 @@ import time
 import tweepy
 import logging
 import pandas as pd
+import requests
 from dotenv import load_dotenv
 load_dotenv()
 # from tweepy.streaming import StreamListener
